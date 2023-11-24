@@ -1,9 +1,10 @@
 import React, { FormEvent, useRef } from "react";
 import Button from "../UI/Button";
+import Input from "../UI/Input";
 
-type OnAddNote =  (title: string, content: string) => void;
+type OnAddNote = (title: string, content: string) => void;
 
-function NoteForm(props:  {onAddNote: OnAddNote}) {
+function NoteForm(props: { onAddNote: OnAddNote }) {
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLInputElement>(null);
 
@@ -11,29 +12,44 @@ function NoteForm(props:  {onAddNote: OnAddNote}) {
     event.preventDefault();
 
     const data = {
-        title : titleRef.current!.value,
-        content: contentRef.current!.value
-    }
+      title: titleRef.current!.value,
+      content: contentRef.current!.value,
+    };
 
-    const {title, content} = data;
+    const { title, content } = data;
     props.onAddNote(title, content);
-    
+
     event.currentTarget.reset();
   };
 
   return (
     <form onSubmit={sumbitFormHandled}>
-      <p>
-        <label htmlFor="title">Title</label>
-        <input id="title" type="text" name="title" ref={titleRef} />
-      </p>
-      <p>
-        <label htmlFor="content">Content</label>
-        <input id="content" type="text" name="content" ref={contentRef} />
-      </p>
-      <p>
+      <div>
+        {/* <label htmlFor="title">Title</label>
+        <input id="title" type="text" name="title" ref={titleRef} /> */}
+        <Input
+          id="title"
+          type="text"
+          label="Title"
+          name="title"
+          ref={titleRef}
+        />
+      </div>
+      <div>
+        {/* <label htmlFor="content">Content</label> */}
+        {/* <input id="content" type="text" name="content" ref={contentRef} /> */}
+        <Input
+          id="content"
+          type="text"
+          label="Content"
+          name="content"
+          ref={contentRef}
+        />
+      </div>
+      <div>
         <Button> Add Note </Button>
-      </p>
+      </div>
+      <br/>
     </form>
   );
 }
