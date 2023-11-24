@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import NoteForm from "./components/Notes/NoteForm";
 import NoteList from "./components/Notes/NoteList";
 import MainHeader from "./components/Layout/MainHeader";

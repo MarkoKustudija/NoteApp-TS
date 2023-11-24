@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../UI/Button";
 
 export type NoteItemProps = {
   id: number;
@@ -16,7 +17,7 @@ function NoteItem({ id, title, content, onDeleteNote }: NoteItemProps) {
       </div>
 
       <div>
-        <button onClick={() => onDeleteNote(id)}> Delete </button>
+        <Button onClick={() => onDeleteNote(id)}> Delete </Button>
       </div>
     </article>
   );

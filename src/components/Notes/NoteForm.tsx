@@ -1,4 +1,5 @@
 import React, { FormEvent, useRef } from "react";
+import Button from "../UI/Button";
 
 type OnAddNote =  (title: string, content: string) => void;
 
@@ -31,7 +32,7 @@ function NoteForm(props:  {onAddNote: OnAddNote}) {
         <input id="content" type="text" name="content" ref={contentRef} />
       </p>
       <p>
-        <button> Add Note </button>
+        <Button> Add Note </Button>
       </p>
     </form>
   );
