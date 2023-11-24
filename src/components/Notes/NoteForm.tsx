@@ -1,29 +1,39 @@
-import React, { FormEvent, useRef } from "react";
+import React, { useRef } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import Form, { FormHandle } from "../UI/Form";
 
 type OnAddNote = (title: string, content: string) => void;
 
 function NoteForm(props: { onAddNote: OnAddNote }) {
-  const titleRef = useRef<HTMLInputElement>(null);
-  const contentRef = useRef<HTMLInputElement>(null);
+  
+  // const titleRef = useRef<HTMLInputElement>(null);
+  // const contentRef = useRef<HTMLInputElement>(null);
 
-  const sumbitFormHandled = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const form = useRef<FormHandle>(null);
 
-    const data = {
-      title: titleRef.current!.value,
-      content: contentRef.current!.value,
-    };
-
-    const { title, content } = data;
-    props.onAddNote(title, content);
-
-    event.currentTarget.reset();
+  const sumbitFormHandled = (data: unknown) => {
+    const extractedData = data as { title: string; content: string };
+    props.onAddNote(extractedData.title, extractedData.content);
+    form.current?.clear();
   };
 
+  // const sumbitFormHandled = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+
+  //   const data = {
+  //     title: titleRef.current!.value,
+  //     content: contentRef.current!.value,
+  //   };
+
+  //   const { title, content } = data;
+  //   props.onAddNote(title, content);
+
+  //   event.currentTarget.reset();
+  // };
+
   return (
-    <form onSubmit={sumbitFormHandled}>
+    <Form ref={form} onSave={sumbitFormHandled}>
       <div>
         {/* <label htmlFor="title">Title</label>
         <input id="title" type="text" name="title" ref={titleRef} /> */}
@@ -32,7 +42,7 @@ function NoteForm(props: { onAddNote: OnAddNote }) {
           type="text"
           label="Title"
           name="title"
-          ref={titleRef}
+          // ref={titleRef}
         />
       </div>
       <div>
@@ -43,14 +53,14 @@ function NoteForm(props: { onAddNote: OnAddNote }) {
           type="text"
           label="Content"
           name="content"
-          ref={contentRef}
+          // ref={contentRef}
         />
       </div>
       <div>
         <Button> Add Note </Button>
       </div>
-      <br/>
-    </form>
+      <br />
+    </Form>
   );
 }
 
