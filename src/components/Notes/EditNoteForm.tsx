@@ -11,7 +11,7 @@ type NoteFormProps = {
    note? : Note
 }
 
-function NoteForm( {method}: NoteFormProps) {
+function EditNoteForm( {method}: NoteFormProps) {
   
 
   return (
@@ -42,7 +42,7 @@ function NoteForm( {method}: NoteFormProps) {
   );
 }
 
-export default NoteForm;
+export default EditNoteForm;
 
 
 type actionProps = {
@@ -61,6 +61,7 @@ export async function action({ request, params } : actionProps) {
   let url = 'http://localhost:8080/notes';
 
   if (method === 'PUT') {
+    
     const id = params.id;
     url = 'http://localhost:8080/notes/' + id;
   }

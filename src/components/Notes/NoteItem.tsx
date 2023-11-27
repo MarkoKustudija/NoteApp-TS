@@ -1,25 +1,36 @@
 import React from "react";
 import Button from "../UI/Button";
+import { useNavigate } from "react-router-dom";
 
 export type NoteItemProps = {
-  id: number;
-  title: string;
-  content: string;
-  onDeleteNote: (noteId: number) => void;
+  note: {
+    id: number;
+    title: string;
+    content: string;
+  };
+  onDeleteNote?: (noteId: number) => void;
 };
 
-function NoteItem({ id, title, content, onDeleteNote }: NoteItemProps) {
-  return (
-    <article>
-      <div>
-        <h2>{title}</h2>
-        <p>{content}</p>
-      </div>
+function NoteItem({ note, onDeleteNote }: NoteItemProps) {
 
+  const navigate = useNavigate();
+
+  const editNoteHandler = () => {
+    navigate(`/notes/${note.id}/edit`);
+    // navigate(`:id/edit`);
+  };
+
+  return (
+    <menu>
+      <h2>{note.title}</h2>
+      <p>{note.content}</p>
       <div>
-        <Button onClick={() => onDeleteNote(id)}> Delete </Button>
+        {onDeleteNote && (
+          <Button onClick={() => onDeleteNote(note.id)}> Delete </Button>
+        )}
+        <Button onClick={() => editNoteHandler()}> Edit </Button>
       </div>
-    </article>
+    </menu>
   );
 }
 
