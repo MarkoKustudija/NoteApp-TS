@@ -1,34 +1,11 @@
-/* eslint-disable jsx-a11y/alt-text */
-
-import  { PropsWithChildren } from "react";
 import { NavLink } from "react-router-dom";
-// import Button from "../UI/Button";
-import classes from "./MainHeader.module.css";
+import classes from "./NotesNavigation.module.css";
 
-type HeaderProps = PropsWithChildren<{
-  // image: {
-  //   src: string;
-  //   alt: string;
-  // };
-}>;
-
-function MainHeader({ children }: HeaderProps) {
+function NotesNavigation() {
   return (
     <header className={classes.header}>
-      <div className={classes.logo}> NoteApp </div>
       <nav>
         <ul className={classes.list}>
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              <h1>Home</h1>
-            </NavLink>
-          </li>
           <li>
             <NavLink
               to="/notes"
@@ -37,7 +14,18 @@ function MainHeader({ children }: HeaderProps) {
               }
               end
             >
-              <h1>Notes</h1>
+              All Notes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/notes/new"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              end
+            >
+              New Note
             </NavLink>
           </li>
         </ul>
@@ -46,4 +34,4 @@ function MainHeader({ children }: HeaderProps) {
   );
 }
 
-export default MainHeader;
+export default NotesNavigation;

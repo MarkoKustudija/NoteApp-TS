@@ -1,26 +1,26 @@
-import React from "react";
 import NoteItem from "./NoteItem";
 import { Note } from "../../App";
 
-type NoteListProps = {
-  notes: Note[];
-  onDeleteNote: (noteId: number) => void;
+export type NoteListProps = {
+  notes: Note[] | undefined;
+  onDeleteNote?: (noteId: number) => void;
 };
 
-function NoteList({ onDeleteNote , notes }: NoteListProps) {
+function NoteList({ notes, onDeleteNote }: NoteListProps) {
+  // const [notes, setNotes] = useState<Note[]>([]);
+
+  if (!notes) {
+    return null;
+  }
+
   return (
-    <ul>
-      {notes.map((note) => (
-        <li key={note.id}>
-          <NoteItem
-            id={note.id}
-            title={note.title}
-            content={note.content}
-            onDeleteNote={onDeleteNote}
-          />
-        </li>
-      ))}
-    </ul>
+      <ul>
+        {notes.map((note) => (
+          <li key={note.id}>
+            <NoteItem note={note} onDeleteNote={onDeleteNote} />
+          </li>
+        ))}
+      </ul>
   );
 }
 

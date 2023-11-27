@@ -1,8 +1,15 @@
-import { useState } from "react";
-import NoteForm from "./components/Notes/NoteForm";
-import NoteList from "./components/Notes/NoteList";
-import MainHeader from "./components/Layout/MainHeader";
-import noteImg from "./assets/note.jpeg"
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Root from "./pages/Root";
+import AllNotes from "./pages/AllNotes";
+import AddNotePage from "./pages/AddNotePage";
+import HomePage from "./HomePage";
+import { action as manipulateNoteAction } from "./components/Notes/NoteForm";
+import NotesRootLayout from "./pages/NotesRoot";
+import NoteDetail, {
+  loader as noteDetailLoader,
+} from "./pages/NoteDetailPage";
+import EditNotePage from "./pages/EditNotePage";
+import ErrorPage from "./pages/ErrorPage";
 
 export type Note = {
   id: number;
@@ -10,39 +17,48 @@ export type Note = {
   content: string;
 };
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <HomePage /> },
+      {
+        path: "notes",
+        element: <NotesRootLayout />,
+        children: [
+          {
+            index: true,
+            element: <AllNotes />,
+            // loader: notesLoader,
+          },
+
+          {
+            path: ":id",
+            id: "note-detail",
+            loader: noteDetailLoader,
+            children: [
+              {
+                index: true,
+                element: <NoteDetail />,
+              },
+              {
+                path: "edit",
+                element: <EditNotePage />,
+                action: manipulateNoteAction,
+              },
+            ],
+          },
+          { path: "new", element: <AddNotePage />, action: manipulateNoteAction },
+        ],
+      },
+    ],
+  },
+]);
+
 function App() {
-  const [notes, setNotes] = useState<Note[]>([]);
-
-  const addNoteHandler = (title: string, content: string) => {
-    setNotes((prevNotes) => {
-      const newNote: Note = {
-        id: Math.random(),
-        title: title,
-        content: content,
-      };
-
-      return [...prevNotes, newNote];
-    });
-  };
-
-  const deleteNoteHandler = (noteId: number) => {
-    setNotes((prevNotes) => {
-      return prevNotes.filter((note) => {
-        return note.id !== noteId;
-      });
-    });
-  };
-  return (
-    <>
-      <main>
-        <MainHeader image={{ src: noteImg, alt: "A list of notes" }}>
-          <h1>Your Note </h1>
-        </MainHeader>
-        <NoteForm onAddNote={addNoteHandler} />
-        <NoteList notes={notes} onDeleteNote={deleteNoteHandler} />
-      </main>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
