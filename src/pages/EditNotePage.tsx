@@ -13,7 +13,7 @@ function EditNotePage() {
     content: data.content,
   };
 
-  return <NoteForm method="post" note={note} />;
+  return <NoteForm method="put" note={note} />;
 }
 
 export default EditNotePage;

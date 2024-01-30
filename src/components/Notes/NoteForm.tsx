@@ -11,7 +11,7 @@ type NoteFormProps = {
    note? : Note
 }
 
-function NoteForm( {method}: NoteFormProps) {
+function NoteForm( {method, note}: NoteFormProps) {
   
 
   return (
@@ -23,6 +23,7 @@ function NoteForm( {method}: NoteFormProps) {
           label="Title"
           name="title"
           required
+          defaultValue={note ? note.title : ''}
         />
       </div>
       <div>
@@ -32,6 +33,7 @@ function NoteForm( {method}: NoteFormProps) {
           rows={3}
           name="content"
           required
+          defaultValue={note ? note.content : ''}
         />
       </div>
       <div>
