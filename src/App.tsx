@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Root";
 import AllNotes , {loader as notesLoader} from "./pages/AllNotes";
 import AddNotePage from "./pages/AddNotePage";
-import HomePage from "./HomePage";
+import HomePage from "./components/HomePage";
 import { action as manipulateNoteAction } from "./components/Notes/NoteForm";
 import NotesRootLayout from "./pages/NotesRoot";
 import NoteDetail, {

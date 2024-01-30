@@ -1,0 +1,116 @@
+.item {
+  max-width: 50rem;
+  margin: 2rem auto;
+  text-align: center;
+
+  color: inherit;
+  /* display: flex; */
+  background-color: var(--color-gray-800);
+  border-radius: 5px;
+  overflow: hidden;
+
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.actions a,
+.actions button {
+  padding: 0.25rem 1rem;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.actions button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-primary-800);
+}
+
+
+  /* .note {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 10px;
+    width: 240px;
+    margin: 16px;
+    float: left;
+    
+  }
+  .note h1 {
+    font-size: 1.1em;
+    margin-bottom: 6px;
+    color: red;
+  }
+  .note p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: red;
+  }
+
+  
+  .note button {
+    position: relative;
+    right: 18px;
+    bottom: -18px;
+    background: #f5ba13;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    outline: none;
+    float: right;
+  } */
+  
+  
+
+   /* .note {
+    margin: 1rem 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: rgb(237, 211, 186)
+  }
+  
+  .note:last-of-type {
+    border-bottom: none;
+  }
+  
+  .note figure {
+    margin: 0;
+    padding: 0;
+    width: 70%;
+  }
+  
+  .note blockquote {
+    margin: 0;
+    text-align: left;
+    font-size: 1.5rem;
+    color: peru
+  }
+  
+  .note p {
+    margin: 0;
+    margin-bottom: 0.25rem;
+  }
+  
+  .note figcaption {
+    font-style: italic;
+    color: rgb(198, 142, 82)
+  } */
+  

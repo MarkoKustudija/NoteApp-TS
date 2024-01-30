@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import classes from "./PageContent.module.css";
 
 type PageContentProps = {
-  title: string;
+  title?: string;
   children: ReactNode;
 };
 

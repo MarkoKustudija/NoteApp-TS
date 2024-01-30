@@ -1,48 +1,84 @@
 
 
 .form {
-    max-width: 40rem;
-    margin: 2rem auto;
-  }
+  max-width: 40rem;
+  margin: 2rem auto;
+}
+
+.form label,
+.form input,
+.form textarea {
+  display: block;
+  width: 100%;
+}
+
+.form input,
+.form textarea {
+  font: inherit;
+  padding: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.actions button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  background-color: var(--color-gray-300);
+  color: var(--color-gray-800);
+  border: none;
+}
+
+.actions button[type='button'] {
+  background-color: transparent;
+  color: var(--color-gray-300);
+}
+
+.actions button:hover {
+  background-color: var(--color-primary-300);
+}
+
+.actions button[type='button']:hover {
+  background-color: var(--color-gray-800);
+}
+
   
-  .form label,
-  .form input,
-  .form textarea {
-    display: block;
+  /* form {
+    position: relative;
+    width: 480px;
+    margin: 30px auto 20px auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+  }
+  form input,
+  form textarea {
     width: 100%;
-  }
-  
-  .form input,
-  .form textarea {
-    font: inherit;
-    padding: 0.25rem;
-  }
-  
-  .actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
-  }
-  
-  .actions button {
-    font: inherit;
-    cursor: pointer;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    background-color: var(--color-gray-300);
-    color: var(--color-gray-800);
     border: none;
+    padding: 4px;
+    outline: none;
+    font-size: 1.2em;
+    font-family: inherit;
+    resize: none;
   }
+  form button {
+    position: absolute;
+    right: 18px;
+    bottom: -18px;
+    background: #f5ba13;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    outline: none;
+  } */
   
-  .actions button[type='button'] {
-    background-color: transparent;
-    color: var(--color-gray-300);
-  }
-  
-  .actions button:hover {
-    background-color: var(--color-primary-300);
-  }
-  
-  .actions button[type='button']:hover {
-    background-color: var(--color-gray-800);
-  }

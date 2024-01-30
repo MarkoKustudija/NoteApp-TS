@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 import  { PropsWithChildren } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // import Button from "../UI/Button";
 import classes from "./MainHeader.module.css";
 
@@ -15,7 +15,7 @@ type HeaderProps = PropsWithChildren<{
 function MainHeader({ children }: HeaderProps) {
   return (
     <header className={classes.header}>
-      <div className={classes.logo}> NoteApp </div>
+      <Link to="/" className={classes.logo}> NoteApp </Link>
       <nav>
         <ul className={classes.list}>
           <li>

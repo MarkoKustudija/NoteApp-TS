@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import Card from "./UI/Card";
+import PageContent from "./PageContent";
 
 const Home = () => {
+
   return (
-    <>
-      <main>
+    <Card>
+      <PageContent>
         <h1> Welcome to Home Page</h1>
 
         <p>This is the Note App where you can add your notes...</p>
@@ -15,8 +18,8 @@ const Home = () => {
         <Link to="/notes">
           <h3>Go to Notes</h3>
         </Link>
-      </main>
-    </>
+      </PageContent>
+    </Card>
   );
 };
 

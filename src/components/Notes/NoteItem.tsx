@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { Link, useSubmit } from "react-router-dom";
 import Button from "../UI/Button";
+import classes from "./NoteItem.module.css";
 
 export type NoteItemProps = PropsWithChildren<{
   note: {
@@ -25,13 +26,10 @@ function NoteItem({ note, children }: NoteItemProps) {
   };
 
   return (
-    <article>
-      <div>
+    <article className={classes.item}>
         <h2>Title: {note.title}</h2>
         <h2>Content: {note.content}</h2>
-        <p>{children}</p>
-      </div>
-      <menu>
+      <menu className={classes.actions}>
         {/* <Link to=":id/edit">Edit</Link> */}
         <Link to="edit">
           <h3>Edit</h3>

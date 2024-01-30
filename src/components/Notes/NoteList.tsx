@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Note } from "../../App";
+import classes from "./NotesList.module.css";
 
 export type NoteListProps = {
   notes: Note[];
@@ -13,11 +14,11 @@ function NoteList({ notes }: NoteListProps) {
   console.log(notes);
 
   return (
-    <div>
-      <ul>
+    <div className={classes.notes}>
+      <ul className={classes.list}>
         {notes.map((note) => {
           return (
-            <li key={note.id}>
+            <li key={note.id} className={classes.item}>
               <Link to={`/notes/${note.id}`}>
                 <div>
                   <h2>Title : {note.title}</h2>

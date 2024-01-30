@@ -1,5 +1,5 @@
 import { useRouteError } from "react-router-dom";
-import PageContent from "../PageContent";
+import PageContent from "../components/PageContent";
 import MainHeader from "../components/Layout/MainHeader";
 
 type RouteError = {
