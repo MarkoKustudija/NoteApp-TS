@@ -1,18 +1,19 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Root";
-import AllNotes from "./pages/AllNotes";
+import AllNotes , {loader as notesLoader} from "./pages/AllNotes";
 import AddNotePage from "./pages/AddNotePage";
 import HomePage from "./HomePage";
 import { action as manipulateNoteAction } from "./components/Notes/NoteForm";
 import NotesRootLayout from "./pages/NotesRoot";
 import NoteDetail, {
+  action as deleteNoteAction,
   loader as noteDetailLoader,
 } from "./pages/NoteDetailPage";
 import EditNotePage from "./pages/EditNotePage";
 import ErrorPage from "./pages/ErrorPage";
 
 export type Note = {
-  id: number;
+  id?: number;
   title: string;
   content: string;
 };
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <AllNotes />,
-            // loader: notesLoader,
+            loader: notesLoader,
           },
 
           {
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <NoteDetail />,
+                action: deleteNoteAction,
               },
               {
                 path: "edit",

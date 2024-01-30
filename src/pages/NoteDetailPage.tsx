@@ -1,17 +1,15 @@
 /* eslint-disable no-throw-literal */
 import { json, redirect, useRouteLoaderData } from "react-router-dom";
-import NoteItem from "../components/Notes/NoteItem";
+import NoteItem, { NoteItemProps } from "../components/Notes/NoteItem";
+import { Note } from "../App";
+
+
 
 function NoteDetail() {
-
-  const data = useRouteLoaderData("note-detail") as {
-    id: number;
-    title: string;
-    content: string;
-  };
+  
+  const data = useRouteLoaderData("note-detail") as Note;
 
   const note = {
-    id: data.id,
     title: data.title,
     content: data.content,
   };
@@ -19,12 +17,22 @@ function NoteDetail() {
   return <NoteItem note={note} />;
 }
 
-export default NoteDetail;
-
-export async function loader(params: any) {
+export async function loader({ params }: any) {
   const id = params.id;
 
-  const response = await fetch(`http://localhost:8080/notes/` + id);
+  console.log(id);
+
+  if (id === undefined) {
+    throw json(
+      { message: "Note ID is undefined." },
+      {
+        status: 400, // Bad Request
+      }
+    );
+  }
+
+
+  const response = await fetch("http://localhost:8080/notes/" + id);
 
   if (!response.ok) {
     throw json(
@@ -38,11 +46,11 @@ export async function loader(params: any) {
   }
 }
 
-
-export async function action(params: any) {
+export async function action({params}: any) {
   const noteId = params.id;
   const response = await fetch("http://localhost:8080/notes/" + noteId, {
-    method: 'DELETE',
+    // method: request.method,
+    method: "DELETE",
   });
 
   if (!response.ok) {
@@ -54,4 +62,6 @@ export async function action(params: any) {
     );
   }
   return redirect("/notes");
-}  
+}
+
+export default NoteDetail;

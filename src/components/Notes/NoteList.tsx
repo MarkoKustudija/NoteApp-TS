@@ -1,26 +1,34 @@
-import NoteItem from "./NoteItem";
+import { Link } from "react-router-dom";
 import { Note } from "../../App";
 
 export type NoteListProps = {
-  notes: Note[] | undefined;
+  notes: Note[];
   onDeleteNote?: (noteId: number) => void;
 };
 
-function NoteList({ notes, onDeleteNote }: NoteListProps) {
-  // const [notes, setNotes] = useState<Note[]>([]);
-
+function NoteList({ notes }: NoteListProps) {
   if (!notes) {
     return null;
   }
+  console.log(notes);
 
   return (
+    <div>
       <ul>
-        {notes.map((note) => (
-          <li key={note.id}>
-            <NoteItem note={note} onDeleteNote={onDeleteNote} />
-          </li>
-        ))}
+        {notes.map((note) => {
+          return (
+            <li key={note.id}>
+              <Link to={`/notes/${note.id}`}>
+                <div>
+                  <h2>Title : {note.title}</h2>
+                  <h2>Content: {note.content}</h2>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
+    </div>
   );
 }
 

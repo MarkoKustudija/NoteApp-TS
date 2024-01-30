@@ -1,36 +1,46 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
+import { Link, useSubmit } from "react-router-dom";
 import Button from "../UI/Button";
-import { useNavigate } from "react-router-dom";
 
-export type NoteItemProps = {
+export type NoteItemProps = PropsWithChildren<{
   note: {
-    id: number;
+    id?: number;
     title: string;
     content: string;
   };
   onDeleteNote?: (noteId: number) => void;
-};
+}>;
 
-function NoteItem({ note, onDeleteNote }: NoteItemProps) {
+function NoteItem({ note, children }: NoteItemProps) {
+  const submit = useSubmit();
 
-  const navigate = useNavigate();
+  const startDeleteHandler = () => {
+    const proceed = window.confirm(
+      "Are you sure you want to delete this note?"
+    );
 
-  const editNoteHandler = () => {
-    navigate(`/notes/${note.id}/edit`);
-    // navigate(`:id/edit`);
+    if (proceed) {
+      submit(null, { method: "delete" });
+    }
   };
 
   return (
-    <menu>
-      <h2>{note.title}</h2>
-      <p>{note.content}</p>
+    <article>
       <div>
-        {onDeleteNote && (
-          <Button onClick={() => onDeleteNote(note.id)}> Delete </Button>
-        )}
-        <Button onClick={() => editNoteHandler()}> Edit </Button>
+        <h2>Title: {note.title}</h2>
+        <h2>Content: {note.content}</h2>
+        <p>{children}</p>
       </div>
-    </menu>
+      <menu>
+        {/* <Link to=":id/edit">Edit</Link> */}
+        <Link to="edit">
+          <h3>Edit</h3>
+        </Link>
+        <Button onClick={startDeleteHandler}>
+          <h3>Delete</h3>
+        </Button>
+      </menu>
+    </article>
   );
 }
 
